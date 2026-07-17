@@ -40,6 +40,11 @@ Amissio solves this by using a **Multimodal Retrieval-Augmented Generation (RAG)
 - **Rendering**: react-markdown (for Markdown notes)
 
 ## 🏗️ Architecture & How It Works
+
+<div align="center">
+  <img src="./architecture.svg" alt="Amissio Architecture Diagram" width="100%" />
+</div>
+
 1. **Ingestion**: User submits a YouTube URL via the Terminal UI.
 2. **Extraction**:
    - `yt-dlp` fetches the best audio and video streams.

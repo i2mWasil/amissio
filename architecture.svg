@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 750" width="100%" height="100%" style="background-color: #0f172a; font-family: 'Fira Code', 'JetBrains Mono', Consolas, monospace;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="35" font-size="24" font-weight="bold" text-anchor="middle" fill="#f8fafc">Amissio Architecture</text>
+
+  <g transform="translate(50, 120)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#38bdf8">Terminal UI</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">React / Vite</text>
+  </g>
+
+  <g transform="translate(300, 120)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#4ade80" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#4ade80">FastAPI Backend</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">Python</text>
+  </g>
+
+  <g transform="translate(300, 240)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#fbbf24">Video Downloader</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">yt-dlp</text>
+  </g>
+
+  <g transform="translate(150, 360)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#c084fc" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#c084fc">Audio Extraction</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">WAV</text>
+  </g>
+
+  <g transform="translate(450, 360)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#c084fc" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#c084fc">Frame Extraction</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">OpenCV + Hashing</text>
+  </g>
+
+  <g transform="translate(150, 480)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#f472b6" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#f472b6">Transcription</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">faster-whisper</text>
+  </g>
+
+  <g transform="translate(450, 480)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#f472b6" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#f472b6">Vision &amp; OCR</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">Gemini 2.5 Flash</text>
+  </g>
+
+  <g transform="translate(300, 600)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#818cf8">Semantic Chunking</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">Text &amp; Context</text>
+  </g>
+
+  <g transform="translate(650, 600)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#f87171" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#f87171">Vector DB</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">Qdrant</text>
+  </g>
+
+  <g transform="translate(650, 360)">
+    <rect width="160" height="80" rx="6" fill="#1e293b" stroke="#f472b6" stroke-width="2" />
+    <text x="80.0" y="34.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#f472b6">Map-Reduce Synth</text>
+    <text x="80.0" y="56.0" font-size="12" text-anchor="middle" fill="#94a3b8">Gemini 2.5 Flash</text>
+  </g>
+
+  <g transform="translate(650, 120)">
+    <rect width="160" height="60" rx="6" fill="#1e293b" stroke="#f8fafc" stroke-width="2" />
+    <text x="80.0" y="24.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#f8fafc">Generated Notes</text>
+    <text x="80.0" y="46.0" font-size="12" text-anchor="middle" fill="#94a3b8">Markdown</text>
+  </g>
+  <line x1="210" y1="150" x2="290" y2="150" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="380" y1="180" x2="380" y2="230" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 380 300 L 380 330 L 230 330 L 230 350" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 380 300 L 380 330 L 530 330 L 530 350" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="230" y1="420" x2="230" y2="470" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="530" y1="420" x2="530" y2="470" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 230 540 L 230 570 L 380 570 L 380 590" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 530 540 L 530 570 L 380 570 L 380 590" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="460" y1="630" x2="640" y2="630" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="730" y1="590" x2="730" y2="450" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 460 610 L 625 610 L 625 400 L 640 400" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="730" y1="350" x2="730" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 730 110 L 730 70 L 130 70 L 130 110" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+<text x="250" y="145" font-size="12" fill="#94a3b8" text-anchor="middle">URL</text>
+<text x="430" y="55" font-size="12" fill="#94a3b8" text-anchor="middle">Display Notes &amp; Chat</text>
+<text x="740" y="270" font-size="12" fill="#94a3b8">Output</text>
+<text x="740" y="530" font-size="12" fill="#94a3b8">Retrieval</text>
+</svg>
