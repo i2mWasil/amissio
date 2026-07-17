@@ -1,0 +1,669 @@
+@import "tailwindcss";
+
+/* ============================================================
+   AMISSIO — DESIGN TOKENS (Tailwind v4 @theme)
+   ============================================================ */
+@theme {
+  /* ── Colour Palette ─────────────────────────────────────── */
+  --color-void:          #0a0a0a;
+  --color-abyss:         #111111;
+  --color-surface:       #161616;
+  --color-surface-alt:   #1c1c1c;
+  --color-border:        #2a2a2a;
+  --color-border-subtle: #222222;
+  --color-muted:         #555555;
+  --color-dim:           #888888;
+  --color-text:          #e0e0e0;
+  --color-bright:        #f5f5f5;
+
+  /* Neon accent — "phosphor green" */
+  --color-neon:          #39ff14;
+  --color-neon-dim:      #2ecc0f;
+  --color-neon-glow:     rgba(57, 255, 20, 0.15);
+  --color-neon-glow-strong: rgba(57, 255, 20, 0.30);
+
+  /* Danger / warning */
+  --color-error:         #ff4444;
+  --color-warn:          #ffaa00;
+
+  /* ── Font Families ──────────────────────────────────────── */
+  --font-mono:  "JetBrains Mono", ui-monospace, "Cascadia Mono", "Fira Code", monospace;
+  --font-sans:  "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ── Radii ──────────────────────────────────────────────── */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+
+  /* ── Timing ─────────────────────────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   BASE RESETS
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-void);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SCROLLBAR — thin dark track
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyss);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-abyss);
+}
+
+/* ============================================================
+   TERMINAL STYLES
+   ============================================================ */
+.terminal-container {
+  background: var(--color-abyss);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 0 40px rgba(57, 255, 20, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.terminal-dot--red    { background: #ff5f57; }
+.terminal-dot--yellow { background: #febc2e; }
+.terminal-dot--green  { background: #28c840; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-dim);
+  margin-left: 8px;
+}
+
+.terminal-body {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--color-neon);
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.terminal-prompt {
+  color: var(--color-neon);
+}
+
+.terminal-prompt-user {
+  color: var(--color-neon-dim);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--color-neon);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-bright);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  caret-color: var(--color-neon);
+  width: 100%;
+}
+
+.terminal-input::placeholder {
+  color: var(--color-muted);
+}
+
+.terminal-log-line {
+  color: var(--color-dim);
+}
+
+.terminal-log-line--success {
+  color: var(--color-neon);
+}
+
+.terminal-log-line--error {
+  color: var(--color-error);
+}
+
+.terminal-log-line--warn {
+  color: var(--color-warn);
+}
+
+/* ============================================================
+   NEON GLOW EFFECTS
+   ============================================================ */
+.glow-border {
+  box-shadow:
+    0 0 0 1px var(--color-neon-dim),
+    0 0 20px var(--color-neon-glow),
+    0 0 60px rgba(57, 255, 20, 0.06);
+}
+
+.glow-text {
+  text-shadow:
+    0 0 6px var(--color-neon-glow-strong),
+    0 0 20px var(--color-neon-glow);
+}
+
+/* ============================================================
+   MARKDOWN / NOTES PROSE STYLING
+   ============================================================ */
+.prose-notes {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.prose-notes h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-bright);
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose-notes h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-bright);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.prose-notes h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.prose-notes h4,
+.prose-notes h5,
+.prose-notes h6 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.prose-notes p {
+  margin: 0.75rem 0;
+}
+
+.prose-notes a {
+  color: var(--color-neon-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.prose-notes a:hover {
+  color: var(--color-neon);
+}
+
+.prose-notes strong {
+  color: var(--color-bright);
+  font-weight: 600;
+}
+
+.prose-notes em {
+  color: var(--color-dim);
+  font-style: italic;
+}
+
+.prose-notes ul,
+.prose-notes ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose-notes li {
+  margin: 0.35rem 0;
+}
+
+.prose-notes li::marker {
+  color: var(--color-neon-dim);
+}
+
+.prose-notes blockquote {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-neon-dim);
+  background: var(--color-surface);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--color-dim);
+}
+
+.prose-notes hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0;
+}
+
+/* ── Inline Code ──────────────────────────────────────────── */
+.prose-notes code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-surface-alt);
+  color: var(--color-neon-dim);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* ── Fenced Code Blocks ──────────────────────────────────── */
+.prose-notes pre {
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.prose-notes pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.prose-notes table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.prose-notes thead th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-bright);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--color-neon-dim);
+  background: var(--color-surface);
+}
+
+.prose-notes tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.prose-notes tbody tr:hover {
+  background: var(--color-surface);
+}
+
+/* ── Images ───────────────────────────────────────────────── */
+.prose-notes img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin: 1rem 0;
+}
+
+/* ── Timestamp Pills ──────────────────────────────────────── */
+.timestamp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-neon);
+  background: rgba(57, 255, 20, 0.08);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  vertical-align: middle;
+  line-height: 1.6;
+}
+
+.timestamp-pill:hover {
+  background: rgba(57, 255, 20, 0.16);
+  border-color: rgba(57, 255, 20, 0.4);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.15);
+  color: var(--color-neon);
+  transform: translateY(-1px);
+}
+
+.timestamp-pill:active {
+  transform: translateY(0);
+}
+
+/* ── Code Block Chrome ────────────────────────────────────── */
+.code-block-wrapper {
+  position: relative;
+  margin: 1.25rem 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-dim);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.code-block-header .lang-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.code-block-header .lang-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-neon-dim);
+}
+
+.code-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.code-copy-btn:hover {
+  color: var(--color-neon-dim);
+  border-color: var(--color-neon-dim);
+  background: rgba(57, 255, 20, 0.05);
+}
+
+.code-copy-btn.copied {
+  color: var(--color-neon);
+  border-color: var(--color-neon);
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+}
+
+/* ── Enhanced Tables (full grid borders) ──────────────────── */
+.prose-notes table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.prose-notes thead th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-bright);
+  padding: 0.7rem 1rem;
+  border-bottom: 2px solid var(--color-neon-dim);
+  border-right: 1px solid var(--color-border-subtle);
+  background: var(--color-surface);
+}
+
+.prose-notes thead th:last-child {
+  border-right: none;
+}
+
+.prose-notes tbody td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.prose-notes tbody td:last-child {
+  border-right: none;
+}
+
+.prose-notes tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose-notes tbody tr:hover {
+  background: var(--color-surface);
+}
+
+/* ── Heading Anchors ──────────────────────────────────────── */
+.heading-anchor {
+  position: relative;
+}
+
+.heading-anchor .anchor-link {
+  position: absolute;
+  left: -1.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  color: var(--color-neon-dim);
+  font-size: 0.8em;
+  transition: opacity 0.15s ease;
+  text-decoration: none;
+}
+
+.heading-anchor:hover .anchor-link {
+  opacity: 0.6;
+}
+
+.heading-anchor:hover .anchor-link:hover {
+  opacity: 1;
+}
+
+/* ── Back to Top Button ───────────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: calc(30% + 24px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-dim);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:hover {
+  color: var(--color-neon);
+  border-color: var(--color-neon-dim);
+  box-shadow: 0 4px 16px rgba(57, 255, 20, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   CHAT PANEL STYLES
+   ============================================================ */
+.chat-panel {
+  background: var(--color-abyss);
+  border-left: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.chat-input-area {
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: 88%;
+}
+
+.chat-bubble--user {
+  background: rgba(57, 255, 20, 0.08);
+  border: 1px solid rgba(57, 255, 20, 0.15);
+  color: var(--color-text);
+  margin-left: auto;
+}
+
+.chat-bubble--ai {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* ============================================================
+   LAYOUT TRANSITIONS
+   ============================================================ */
+.layout-transition {
+  transition: all 0.6s var(--ease-out-expo);
+}
+
+/* ============================================================
+   UTILITY ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s var(--ease-out-expo) both;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--color-neon-glow);
+  }
+  50% {
+    box-shadow: 0 0 24px var(--color-neon-glow-strong), 0 0 60px var(--color-neon-glow);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanline-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(57, 255, 20, 0.015) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
